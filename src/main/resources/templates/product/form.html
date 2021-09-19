@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма продукта</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></head>
+
+</head>
+<body>
+    <div class="container">
+        <div th:replace="~{fragments/header::header}">Header</div>
+
+        <h1 th:text="${product.id} == null ? 'Добавление продукта' : 'Редактирование продукта'">Добавление/Редактирование продукта</h1>
+
+        <div th:replace="~{fragments/violations::violations}"></div>
+
+        <form action="#" th:action="@{/product}" th:object="${product}" method="post" enctype="multipart/form-data">
+
+            <!--TODO: Рассказать про баг-->
+            <div th:if="${product.id != null}" class="form-group">
+                <input type="number" th:field="*{id}" hidden>
+            </div>
+
+            <div class="form-group">
+                <input type="file" name="image" id="image">
+                <input th:if="${product.imageLink != null}" th:field="*{imageLink}" type="text" hidden>
+            </div>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Наименование продукта</label>
+                <input th:field="*{title}" id="title" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Укажите наименование">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Цена продукта</label>
+                <input th:field="*{price}" id="price" type="number" step="0.01" class="form-control" aria-describedby="emailHelp" placeholder="Укажите цену" >
+            </div>
+
+            <div class="mb-3">
+                <label for="categories" class="form-label">Категории</label>
+                <select id="categories" class="form-select" th:field="*{categories}" multiple>
+                    <option th:each="category : ${categories}"
+                            th:selected="${#lists.contains(product.categories, category)}"
+                            th:value="${{category}}"
+                            th:text="${category.name}"
+                    >
+                        Category
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+
+        <div th:replace="~{fragments/footer::footer}">Footer</div>
+    </div>
+
+</body>
+</html>

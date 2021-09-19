@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></head>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark" th:fragment="header">
+            <div class="container-fluid">
+                <span class="navbar-brand ms-2 mb-0 h1">
+                    <a th:href="@{/product/list}" href="#">GB.Барахолка</a>
+                </span>
+
+                <div class="d-flex">
+                    <a th:href="@{/product/form}" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="btn btn-primary me-2">Добавить продукт</a>
+                    <a th:href="@{/category/form}" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="btn btn-success me-2">Добавить категорию</a>
+                    <a th:href="@{/user/list}" sec:authorize="hasRole('ADMIN')" class="btn btn-success me-2">Пользователи</a>
+
+                    <a th:href="@{/login}" sec:authorize="isAnonymous()" class="btn btn-primary me-2">Войти</a>
+                    <a th:href="@{/user/registration}" sec:authorize="isAnonymous()" class="btn btn-success me-2">Регистрация</a>
+
+                    <a th:href="@{/cart/list}" class="btn btn-success me-2">
+                        Корзина
+                        <span th:if="${shoppingCart.getCount() > 0}" th:text="${shoppingCart.getCount()}"></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </body>
+</html>

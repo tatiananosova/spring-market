@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head></head>
+    <body>
+        <div th:fragment="categoryTree">
+            <ul>
+                <li th:each="treeEntry : ${treeEntries}">
+                    <div class="flex">
+                        <a th:href="@{/product/list(category=${treeEntry.category.alias})}"
+                           th:text="${treeEntry.category.name}"
+                        >
+                            Наименование категории
+                        </a>
+
+                        <a th:href="@{/category/form(id=${treeEntry.category.id})}" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="ms-1 link-secondary">
+                            <small>| Редактировать</small>
+                        </a>
+                    </div>
+
+                    <div th:replace="~{fragments/category-tree::categoryTree(treeEntries=${treeEntry.subCategories})}"></div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Продукты</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></head>
+<body>
+    <div class="container mt-15 mb-15">
+        <div th:replace="~{fragments/header::header}">Header</div>
+
+        <div class="border me-5">
+            <div th:replace="~{fragments/category-tree::categoryTree(treeEntries=${categoryTree.rootCategories})}"></div>
+        </div>
+
+        <h1>Продукты</h1>
+
+        <div class="container">
+            <div class="row row-cols-auto mt-5 mb-5">
+                <div th:each="product : ${page.getContent()}" class="card col me-2" style="width: 18rem;">
+                    <img th:src="@{${product.imageLink}}" class="card-img-top" alt="product image">
+                    <div class="card-body">
+                        <h5 th:text="${product.title}" class="card-title">Product title</h5>
+                        <p th:text="'Цена: ' + ${product.price} + ' руб.'" class="card-text">Price</p>
+                        <div class="justify-content ">
+                            <a th:href="@{/cart/add-to-cart(id=${product.id})}" href="#" class="btn btn-primary mb-2">В корзину</a>
+                            <a th:href="@{/product/form(id=${product.id})}" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" href="#" class="btn btn-primary">Редактировать</a>
+                            <a th:href="@{/product/delete(id=${product.id})}" sec:authorize="hasRole('ADMIN')" href="#" class="btn btn-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="~{fragments/footer::footer}">
+            Footer
+        </div>
+    </div>
+
+</body>
+</html>

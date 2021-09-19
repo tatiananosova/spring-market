@@ -1,0 +1,22 @@
+version: '3.2'
+
+volumes:
+  simple-app-test-postgres:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:9.6
+    container_name: simple-app-test-postgres
+    volumes:
+      - type: volume
+        source: simple-app-test-postgres
+        target: /var/lib/postgresql/dataConfig
+    environment:
+      POSTGRES_DB: simple-app-test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespass
+    ports:
+      - "5432:5432"
+
+# jdbc:postgresql://localhost:5432/simple-app

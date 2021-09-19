@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-15 mb-15">
+    <div th:replace="~{fragments/header::header}">Header</div>
+
+    <h1>Корзина</h1>
+
+    <div class="container">
+        <table th:if="${shoppingCart.getCount() > 0}" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry,iter : ${shoppingCart.productsWithCount}">
+                    <th scope="row" th:text="${iter.index + 1}"/>
+                    <td th:text="${entry.key.title}"/>
+                    <td th:text="${entry.value}"/>
+                    <td th:text="${entry.value * entry.key.price}"/>
+                    <td>
+                        <a th:href="@{/cart/remove-from-cart(id=${entry.key.id})}" href="#" class="link-danger">Х</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 th:unless="${shoppingCart.getCount() > 0}">Добавьте товар в корзину</h5>
+    </div>
+
+    <div th:replace="~{fragments/footer::footer}">
+        Footer
+    </div>
+</div>
+
+</body>
+</html>
