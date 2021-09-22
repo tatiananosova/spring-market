@@ -19,4 +19,4 @@ services:
     ports:
       - "5432:5432"
 
-# jdbc:postgresql://localhost:5432/simple-app
+# jdbc:postgresql://localhost:5432/simple-app-test
