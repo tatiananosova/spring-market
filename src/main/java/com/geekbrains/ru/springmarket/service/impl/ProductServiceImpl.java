@@ -3,12 +3,14 @@ package com.geekbrains.ru.springmarket.service.impl;
 import com.geekbrains.ru.springmarket.domain.CategoryEntity;
 import com.geekbrains.ru.springmarket.domain.ProductEntity;
 import com.geekbrains.ru.springmarket.domain.search.ProductSearchCondition;
+import com.geekbrains.ru.springmarket.dto.ProductViewDto;
 import com.geekbrains.ru.springmarket.repository.ProductRepository;
 import com.geekbrains.ru.springmarket.service.CategoryService;
 import com.geekbrains.ru.springmarket.service.ProductService;
 import com.geekbrains.ru.springmarket.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

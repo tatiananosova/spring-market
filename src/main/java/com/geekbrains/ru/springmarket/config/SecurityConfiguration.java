@@ -26,7 +26,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/product/list");
+                .defaultSuccessUrl("/product/list")
+                .and()
+                .csrf().disable();
     }
 
     @Bean
