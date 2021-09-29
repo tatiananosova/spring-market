@@ -1,12 +1,14 @@
 package com.geekbrains.ru.springmarket.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.file.Paths;
 
 @Configuration
+@EnableAspectJAutoProxy
 public class MvcConfiguration implements WebMvcConfigurer {
 
     @Override

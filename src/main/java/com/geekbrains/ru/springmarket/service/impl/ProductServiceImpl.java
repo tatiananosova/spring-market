@@ -1,5 +1,6 @@
 package com.geekbrains.ru.springmarket.service.impl;
 
+import com.geekbrains.ru.springmarket.aop.AspectAnnotation;
 import com.geekbrains.ru.springmarket.domain.CategoryEntity;
 import com.geekbrains.ru.springmarket.domain.ProductEntity;
 import com.geekbrains.ru.springmarket.domain.search.ProductSearchCondition;
@@ -29,7 +30,6 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final CategoryService categoryService;
-
     private final ProductRepository productRepository;
 
     @Override
