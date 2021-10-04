@@ -1,5 +1,6 @@
 package com.geekbrains.ru.springmarket.service.impl;
 
+import com.geekbrains.ru.springmarket.aop.AspectAnnotation;
 import com.geekbrains.ru.springmarket.domain.CategoryEntity;
 import com.geekbrains.ru.springmarket.domain.dto.CategoryTree;
 import com.geekbrains.ru.springmarket.repository.CategoryRepository;
@@ -24,6 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
+    @AspectAnnotation
     public List<CategoryEntity> findAll() {
         return categoryRepository.findAll();
     }
