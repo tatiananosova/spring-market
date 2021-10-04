@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.geekbrains.com/springmarket/ws/categories"
+        xmlns:pr="http://www.geekbrains.com/springmarket/ws/products"
+        targetNamespace="http://www.geekbrains.com/springmarket/ws/categories" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="products.xsd" namespace="http://www.geekbrains.com/springmarket/ws/products"/>
+
+    <xs:element name="getCategoryByNameRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="category">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="products" maxOccurs="unbounded" type="pr:products"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
