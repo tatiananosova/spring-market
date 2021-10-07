@@ -15,10 +15,19 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getCategoryByNameResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="category" type="tns:category"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
     <xs:complexType name="category">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="products" maxOccurs="unbounded" type="pr:products"/>
+            <xs:element name="products" maxOccurs="unbounded" type="pr:product"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

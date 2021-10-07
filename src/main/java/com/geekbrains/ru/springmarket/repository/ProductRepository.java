@@ -22,6 +22,8 @@ public interface ProductRepository {
 
     Optional<ProductEntity> findById(long id);
 
+    Optional<ProductEntity> findByTitle(String title);
+
     List<ProductEntity> findAll();
 
 //    Page<ProductEntity> findAllByTitleLikeIgnoreCase(String like, Pageable pageable);

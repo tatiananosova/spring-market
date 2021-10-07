@@ -78,6 +78,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public Optional<ProductEntity> findByTitle(String title) {
+        return dataProductRepository.findAll().stream().filter(productEntity -> productEntity.getTitle().equals(title)).findFirst();
+    }
+
+    @Override
     public List<ProductEntity> findAll() {
         return dataProductRepository.findAll();
     }
