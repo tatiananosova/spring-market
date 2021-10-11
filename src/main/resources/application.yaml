@@ -12,3 +12,13 @@ spring:
     properties:
       hibernate:
         format-sql: true
+
+info:
+  app:
+    name: "MY_MVC_SHOP"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
